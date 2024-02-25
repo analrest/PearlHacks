@@ -428,17 +428,17 @@ def Q9():
     label2 = tk.Label(root, text="What Dog Breed is this?", font=('Comic Sans MS', 30)) #text
     label2.pack(padx=20, pady=20) #putting the text in the window
 
-    image = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/Dachshund.png")
+    image = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/Lab3.png")
     tk_image = ImageTk.PhotoImage(image)
 
-    resize_image = image.resize((900, 900))
+    resize_image = image.resize((1000, 1000))
 
     frame = tk.Frame(root, width=resize_image.width, height=resize_image.height)
     frame.pack()
 
     label = tk.Label(frame, image=tk_image)
     label.image = tk_image
-    label.place(x=300, y=150)
+    label.place(x=350, y=50)
 
     # A Grid of Buttons.
     buttonframe = tk.Frame(root)
@@ -447,19 +447,19 @@ def Q9():
 
 
     # Each Individual Button in the Grid.
-    btn1 = tk.Button(buttonframe, text="Bull Terrier",  font=('Comic Sans MS', 22))
+    btn1 = tk.Button(buttonframe, text="Golden Retriever",  font=('Comic Sans MS', 22))
     btn1.grid(row=0, column=0, sticky=tk.W+tk.E)
     btn1.bind("<Button-1>", turn_red)
 
-    btn2 = tk.Button(buttonframe, text="Boston Terrier",  font=('Comic Sans MS', 22))
+    btn2 = tk.Button(buttonframe, text="Smooth Coat Collie",  font=('Comic Sans MS', 22))
     btn2.grid(row=0, column=1, sticky=tk.W+tk.E)
     btn2.bind("<Button-1>", turn_red)
 
-    btn3 = tk.Button(buttonframe, text="Pug",  font=('Comic Sans MS', 22))
+    btn3 = tk.Button(buttonframe, text="Vizsla",  font=('Comic Sans MS', 22))
     btn3.grid(row=1, column=0, sticky=tk.W+tk.E)
     btn3.bind("<Button-1>", turn_red)
 
-    btn4 = tk.Button(buttonframe, text="Dachshund",  font=('Comic Sans MS', 22), command=Q10)
+    btn4 = tk.Button(buttonframe, text="Labrador",  font=('Comic Sans MS', 22), command=Q10)
     btn4.grid(row=1, column=1, sticky=tk.W+tk.E)
 
 
@@ -570,5 +570,3 @@ label.place(x=20, y=115)
 
 
 root.mainloop()
-
-
