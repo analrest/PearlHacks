@@ -34,11 +34,14 @@ Rat = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/rat.png")
 # EDIT HERE WHEN ADDING A NEW DOG
 
 score = 0 
+lives = 3
+label4 = None
 
 # Second Window:
 # QUESTIONS:
 def questions():
     """Function to create questions"""
+    global label4
     for widget in root.winfo_children():
         widget.destroy()
 
@@ -48,52 +51,72 @@ def questions():
     global score
     score += 1
 
-    if score == 15:
+
+    # LIVES
+    if lives == 0:
         end_page()
-    
+
     else:
 
-        label3 = tk.Label(root, text=f"Score: {score}", font=('Arial', 20))
-        label3.place(x=100, y=200)
+        if score == 15:
+            end_page()
+    
+        else:
+
+            label3 = tk.Label(root, text=f"Score: {score}", font=('Arial', 20))
+            label3.place(x=100, y=200)
+
+            # TRYING TO GET LIVES TO UPDATE
+            label4 = tk.Label(root, text=f"Lives: {lives}", font=('Arial', 20))
+            label4.place(x=300, y=200)
 
 
-        label2 = tk.Label(root, text="What Dog Breed is This?", font=('Arial', 30))
-        label2.pack(padx=20, pady=20)
+            label2 = tk.Label(root, text="What Dog Breed is This?", font=('Arial', 30))
+            label2.pack(padx=20, pady=20)
 
-        # EDIT HERE WHEN ADDING A NEW DOG
-        photolist = [Bluey, GSD, SpringSpaniel, Husky, Golden, Chihuahua, Beagle, Malinios, Lab, Aussie, Schnauzer, Poodle, Affenpinscher, Afghan, Akita, Airdale, Alaskan, Bulldog, Cockerspan, Eskimo, Rat] #edit here when adding a dog
-        # EDIT HERE WHEN ADDING A NEW DOG
-        random_num = random.randint(0,20) 
-        dog = photolist[random_num]
+            # EDIT HERE WHEN ADDING A NEW DOG
+            photolist = [Bluey, GSD, SpringSpaniel, Husky, Golden, Chihuahua, Beagle, Malinios, Lab, Aussie, Schnauzer, Poodle, Affenpinscher, Afghan, Akita, Airdale, Alaskan, Bulldog, Cockerspan, Eskimo, Rat] #edit here when adding a dog
+            # EDIT HERE WHEN ADDING A NEW DOG
+            random_num = random.randint(0,20) 
+            dog = photolist[random_num]
 
-        width, height = 600, 600
-        resized_dog = dog.resize((width, height))
-        tk_image = ImageTk.PhotoImage(resized_dog)
+            width, height = 600, 600
+            resized_dog = dog.resize((width, height))
+            tk_image = ImageTk.PhotoImage(resized_dog)
 
-        label2 = tk.Label(root, image=tk_image)
-        label2.image = tk_image
-        label2.place(x=700, y=150)
-
-
-        choices, correct_index = answer_choices(random_num)
-
-        # Creating buttons with choices from answer choices function
-        buttonframe = tk.Frame(root)
-        buttonframe.columnconfigure(0, weight=1)
-        buttonframe.columnconfigure(1, weight=1)
+            label2 = tk.Label(root, image=tk_image)
+            label2.image = tk_image
+            label2.place(x=700, y=150)
 
 
-        for i, choice in enumerate(choices):
-            if i == correct_index:
-                btn = tk.Button(buttonframe, text=choice, font=('Arial', 22), command=questions)
+            choices, correct_index = answer_choices(random_num)
 
-            else:
-                btn = tk.Button(buttonframe, text=choice, font=('Arial', 22))
-                btn.bind("<Button-1>", turn_red)
-            btn.grid(row=i, column=0, sticky=tk.W+tk.E)
+            # Creating buttons with choices from answer choices function
+            buttonframe = tk.Frame(root)
+            buttonframe.columnconfigure(0, weight=1)
+            buttonframe.columnconfigure(1, weight=1)
 
 
-        buttonframe.place (x=100, y=300)
+            for i, choice in enumerate(choices):
+                if i == correct_index:
+                    btn = tk.Button(buttonframe, text=choice, font=('Arial', 22), command=questions)
+
+                else:
+                    btn = tk.Button(buttonframe, text=choice, font=('Arial', 22), command=decrement_lives)
+                    btn.bind("<Button-1>", turn_red)
+
+                btn.grid(row=i, column=0, sticky=tk.W+tk.E)
+
+            buttonframe.place (x=100, y=300)
+
+# LIVES
+def decrement_lives():
+    global lives
+    lives -= 1
+    label4.config(text=f"Lives: {lives}")
+    if lives == 0:
+        fail_page()
+
 
 
 
@@ -111,6 +134,27 @@ def answer_choices(index):
 
     return choices, correct_index
 
+
+def fail_page():
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    root.geometry("500x600")
+    root.title("Failed Screen")
+
+    label = tk.Label(root, text="Oopsie! You lost the Dog Breed Game. Try again next time!", font=('Arial', 35))
+    label.pack(padx=40, pady=40)
+
+    image = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/fail.png")
+    tk_image = ImageTk.PhotoImage(image)
+
+    width, height = 650, 600
+    resize_image = image.resize((width, height))
+    tk_image = ImageTk.PhotoImage(resize_image)
+
+    label = tk.Label(root, image=tk_image)
+    label.image = tk_image
+    label.pack(padx=20, pady=20)
 
 
 
