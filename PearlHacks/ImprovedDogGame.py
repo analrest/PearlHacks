@@ -33,7 +33,7 @@ Eskimo = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/eskimo2.png")
 Rat = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/rat.png")
 # EDIT HERE WHEN ADDING A NEW DOG
 
-score = 0
+score = 0 
 
 # Second Window:
 # QUESTIONS:
