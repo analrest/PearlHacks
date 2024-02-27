@@ -33,7 +33,7 @@ Eskimo = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/eskimo2.png")
 Rat = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/rat.png")
 # EDIT HERE WHEN ADDING A NEW DOG
 
-score = 0 
+score = -1 
 lives = 3
 label4 = None
 
@@ -88,6 +88,12 @@ def questions():
             label2.image = tk_image
             label2.place(x=700, y=150)
 
+            return_button = tk.Button(root, text="Return to Start", command=go_to_start)
+            return_button.place(x=40, y=20)
+            
+            exit_button = tk.Button(root, text="Exit", command=exit)
+            exit_button.place(x=10, y=20)
+
 
             choices, correct_index = answer_choices(random_num)
 
@@ -134,6 +140,14 @@ def answer_choices(index):
 
     return choices, correct_index
 
+def go_to_start():
+    root.destroy()
+    create_initial_window()
+
+
+def exit():
+    root.destroy()
+
 
 def fail_page():
     for widget in root.winfo_children():
@@ -155,6 +169,12 @@ def fail_page():
     label = tk.Label(root, image=tk_image)
     label.image = tk_image
     label.pack(padx=20, pady=20)
+
+    return_button = tk.Button(root, text="Return to Start", command=go_to_start)
+    return_button.place(x=20, y=20)
+
+    exit_button = tk.Button(root, text="Exit", command=exit)
+    exit_button.place(x=10, y=20)
 
 
 
@@ -180,13 +200,54 @@ def end_page():
     label.image = tk_image
     label.place(x=20, y=5)
 
+    return_button = tk.Button(root, text="Return to Start", command=go_to_start)
+    return_button.place(x=20, y=20)
+
+    exit_button = tk.Button(root, text="Exit", command=exit)
+    exit_button.place(x=10, y=20)
+
 
 
 
 # Main Window:
-root = tk.Tk() #initializing the window
+def create_initial_window():
+    global root
+    global score
+    score = -1 
+    global lives 
+    lives = 3
+    root = tk.Tk() #initializing the window
+    root.title("Initial Window")
 
-root.geometry("500x600") #size of window
+    root.attributes("-fullscreen", True) #size of window
+
+    label = tk.Label(root, text="The Dog Breed Game", font=('Arial', 35)) #opening page text
+    label.pack(padx=40, pady=40)
+
+
+    button = tk.Button(root, text="Let's Play!", font=('Arial', 22), command=questions) #button that takes you to the next window
+    button.pack(padx=20, pady=20)
+
+
+    image = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/MainDogs.png") #opening page image
+    tk_image = ImageTk.PhotoImage(image)
+
+    width, height = 1000, 500
+    resized_image = image.resize((width, height))
+    tk_image = ImageTk.PhotoImage(resized_image)
+
+    label = tk.Label(root, image=tk_image)
+    label.image = tk_image
+    label.pack(padx=20, pady=20)
+
+    exit_button = tk.Button(root, text="Exit", command=exit)
+    exit_button.place(x=10, y=20)
+
+
+root = tk.Tk() #initializing the window
+root.title("Initial Window")
+
+root.attributes("-fullscreen", True) #size of window
 
 label = tk.Label(root, text="The Dog Breed Game", font=('Arial', 35)) #opening page text
 label.pack(padx=40, pady=40)
@@ -206,6 +267,9 @@ tk_image = ImageTk.PhotoImage(resized_image)
 label = tk.Label(root, image=tk_image)
 label.image = tk_image
 label.pack(padx=20, pady=20)
+
+exit_button = tk.Button(root, text="Exit", command=exit)
+exit_button.place(x=10, y=20)
 
 
 root.mainloop()
