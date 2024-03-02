@@ -26,14 +26,15 @@ Affenpinscher = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/affey.p
 Afghan = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/afghan.png")
 Akita = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/Akita2.png")
 Airdale = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/Airedale.png")
-Alaskan = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/Alaskan.png")
+Boxer = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/boxer.png")
 Bulldog = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/bulldog.png")
-Cockerspan = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/cockerspan.png")
+Corgi = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/corgi.png")
 Eskimo = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/eskimo2.png")
-Rat = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/rat.png")
+Border = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/border.png")
+Mastiff = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/mastiff.png")
 # EDIT HERE WHEN ADDING A NEW DOG
 
-photolist = [Bluey, GSD, SpringSpaniel, Husky, Golden, Chihuahua, Beagle, Malinios, Lab, Aussie, Schnauzer, Poodle, Affenpinscher, Afghan, Akita, Airdale, Alaskan, Bulldog, Cockerspan, Eskimo, Rat] #edit here when adding a dog
+photolist = [Bluey, GSD, SpringSpaniel, Husky, Golden, Chihuahua, Beagle, Malinios, Lab, Aussie, Schnauzer, Poodle, Affenpinscher, Afghan, Akita, Airdale, Boxer, Bulldog, Corgi, Eskimo, Border, Mastiff] #edit here when adding a dog
 
 score = -1 
 lives = 3
@@ -81,9 +82,9 @@ def questions():
 
             # EDIT HERE WHEN ADDING A NEW DOG
             #keeps selecting a random index until an unasked question is found
-            random_num = random.randint(0,20) 
+            random_num = random.randint(0,21) 
             while random_num in asked_questions:
-                random_num = random.randint(0,20)
+                random_num = random.randint(0,21)
 
             asked_questions.append(random_num) #add the index selected to the list keeping track
             
@@ -137,7 +138,7 @@ def decrement_lives():
 def answer_choices(index):
     "Creating answer choices with three being wrong and one being right" 
     # EDIT HERE WHEN ADDING A NEW DOG
-    options = ["Australian Cattle Dog", "German Shepherd", "English Springer Spaniel", "Husky", "Golden Retriever", "Chihuahua", "Beagle", "Belgian Malinios", "Labrador Retriever", "Australian Shepherd", "Schnauzer", "Poodle", "Affenpinscher", "Afghan Hound", "Akita", "Airedale Terrier", "Alaskan Malmute", "American Bulldog", "American Cocker Spaniel", "American Eskimo Dog", "Rat Terrier"] #edit here when adding a dog
+    options = ["Australian Cattle Dog", "German Shepherd", "English Springer Spaniel", "Husky", "Golden Retriever", "Chihuahua", "Beagle", "Belgian Malinios", "Labrador Retriever", "Australian Shepherd", "Schnauzer", "Poodle", "Affenpinscher", "Afghan Hound", "Akita", "Airedale Terrier", "Boxer", "American Bulldog", "Pembroke Welsh Corgi", "American Eskimo Dog", "Border Collie", "American Mastiff"] #edit here when adding a dog
 
     correct_index = random.randint(0,3)
     correct = options[index]
