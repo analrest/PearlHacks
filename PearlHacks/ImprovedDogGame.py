@@ -33,9 +33,14 @@ Eskimo = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/eskimo2.png")
 Rat = Image.open("C:/Users/anare/.vscode/PearlHacks/PearlHacks/rat.png")
 # EDIT HERE WHEN ADDING A NEW DOG
 
+photolist = [Bluey, GSD, SpringSpaniel, Husky, Golden, Chihuahua, Beagle, Malinios, Lab, Aussie, Schnauzer, Poodle, Affenpinscher, Afghan, Akita, Airdale, Alaskan, Bulldog, Cockerspan, Eskimo, Rat] #edit here when adding a dog
+
 score = -1 
 lives = 3
 label4 = None
+
+
+asked_questions = [] #an empty list to keep track of asked questions
 
 # Second Window:
 # QUESTIONS:
@@ -75,9 +80,13 @@ def questions():
             label2.pack(padx=20, pady=20)
 
             # EDIT HERE WHEN ADDING A NEW DOG
-            photolist = [Bluey, GSD, SpringSpaniel, Husky, Golden, Chihuahua, Beagle, Malinios, Lab, Aussie, Schnauzer, Poodle, Affenpinscher, Afghan, Akita, Airdale, Alaskan, Bulldog, Cockerspan, Eskimo, Rat] #edit here when adding a dog
-            # EDIT HERE WHEN ADDING A NEW DOG
+            #keeps selecting a random index until an unasked question is found
             random_num = random.randint(0,20) 
+            while random_num in asked_questions:
+                random_num = random.randint(0,20)
+
+            asked_questions.append(random_num) #add the index selected to the list keeping track
+            
             dog = photolist[random_num]
 
             width, height = 600, 600
@@ -125,11 +134,11 @@ def decrement_lives():
 
 
 
-
 def answer_choices(index):
     "Creating answer choices with three being wrong and one being right" 
     # EDIT HERE WHEN ADDING A NEW DOG
     options = ["Australian Cattle Dog", "German Shepherd", "English Springer Spaniel", "Husky", "Golden Retriever", "Chihuahua", "Beagle", "Belgian Malinios", "Labrador Retriever", "Australian Shepherd", "Schnauzer", "Poodle", "Affenpinscher", "Afghan Hound", "Akita", "Airedale Terrier", "Alaskan Malmute", "American Bulldog", "American Cocker Spaniel", "American Eskimo Dog", "Rat Terrier"] #edit here when adding a dog
+
     correct_index = random.randint(0,3)
     correct = options[index]
 
@@ -137,6 +146,7 @@ def answer_choices(index):
     random.shuffle(options)
     choices = options[:3]
     choices.insert(correct_index, correct)
+
 
     return choices, correct_index
 
@@ -168,10 +178,10 @@ def fail_page():
 
     label = tk.Label(root, image=tk_image)
     label.image = tk_image
-    label.pack(padx=20, pady=20)
+    label.pack(padx=40, pady=40)
 
     return_button = tk.Button(root, text="Return to Start", command=go_to_start)
-    return_button.place(x=20, y=20)
+    return_button.place(x=40, y=20)
 
     exit_button = tk.Button(root, text="Exit", command=exit)
     exit_button.place(x=10, y=20)
@@ -201,7 +211,7 @@ def end_page():
     label.place(x=20, y=5)
 
     return_button = tk.Button(root, text="Return to Start", command=go_to_start)
-    return_button.place(x=20, y=20)
+    return_button.place(x=40, y=20)
 
     exit_button = tk.Button(root, text="Exit", command=exit)
     exit_button.place(x=10, y=20)
